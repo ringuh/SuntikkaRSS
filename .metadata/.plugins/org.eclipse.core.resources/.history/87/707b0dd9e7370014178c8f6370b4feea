@@ -1,0 +1,17 @@
+package com.example.suntikkarss;
+
+import android.app.Activity;
+import android.view.Menu;
+import android.view.MenuInflater;
+
+public class BaseActivity extends Activity {
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main_menu, menu);
+	    return true;
+	}
+	
+	
+}
