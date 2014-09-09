@@ -1,0 +1,20 @@
+package com.example.suntikkarss;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+public class AddFeed extends BaseActivity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.add_feed);
+	}
+
+	
+	public void chooseImage(View view)
+	{
+		Toast.makeText(getBaseContext(), "text", Toast.LENGTH_LONG).show();
+	}
+}

@@ -1,0 +1,18 @@
+package com.example.suntikkarss;
+
+import android.os.Bundle;
+
+public class AddFeed extends BaseActivity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.add_feed);
+	}
+
+	
+	private void chooseImage(View view)
+	{
+		
+	}
+}

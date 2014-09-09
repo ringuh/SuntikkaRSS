@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/editFeedName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:hint="@string/editfeedname"
+        tools:ignore="HardcodedText" >
+
+        <requestFocus />
+    </EditText>
+    
+    <EditText
+        android:id="@+id/editFeedUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:hint="@string/editurlname"
+         android:inputType="textUri">
+
+        <requestFocus />
+    </EditText>
+
+</LinearLayout>

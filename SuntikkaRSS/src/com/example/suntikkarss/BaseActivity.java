@@ -1,6 +1,7 @@
 package com.example.suntikkarss;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,6 +25,10 @@ public class BaseActivity extends Activity {
 		      Toast.makeText(getBaseContext(), R.string.toast_title, 
 		                     Toast.LENGTH_LONG).show();
 		      return true;
+		      
+		    case R.id.action_settings:
+		    	Intent intent = new Intent(this, AddFeed.class);
+		    	startActivity(intent);
 		    default:
 		      return super.onOptionsItemSelected(item);
 		  }
