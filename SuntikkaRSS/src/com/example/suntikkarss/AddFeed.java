@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ public class AddFeed extends BaseActivity {
 
 	private static final int LOAD_IMAGE_RESULTS = 1;
 	private ImageView thumbnail;
+	private String thumbpath = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,21 @@ public class AddFeed extends BaseActivity {
 	
 	public void saveFeed(View view)
 	{
-		Toast.makeText(getBaseContext(), "nyt pitäisi tallentaa kantaan tiedot", Toast.LENGTH_LONG).show();
+		//Toast.makeText(getBaseContext(), "nyt pitäisi tallentaa kantaan tiedot", Toast.LENGTH_LONG).show();
+		
+		SQL mysli = new SQL(getApplicationContext());
+		//mysli.ClearDB();
+		EditText nimi = (EditText)findViewById(R.id.editFeedName);
+		EditText url = (EditText)findViewById(R.id.editFeedUrl);
+		String ret = mysli.InsertFeed(nimi.getText().toString(), url.getText().toString(), thumbpath);
+		Toast.makeText(getBaseContext(), ret, Toast.LENGTH_LONG).show();
+		
 		
 		Intent intent = new Intent(this, MainActivity.class);
+			
 		startActivity(intent);
+		
+		
 	}
 	
 	 @Override
@@ -58,10 +71,10 @@ public class AddFeed extends BaseActivity {
 	            Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
 	            cursor.moveToFirst();
 	            String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
-	             
+	            Toast.makeText(getBaseContext(), imagePath, Toast.LENGTH_LONG).show();
 	            // Now we need to set the GUI ImageView data with data read from the picked file.
 	            thumbnail.setImageBitmap(BitmapFactory.decodeFile(imagePath));
-	             
+	            thumbpath = imagePath;
 	            // At the end remember to close the cursor or you will end with the RuntimeException!
 	            cursor.close();
 	        }
