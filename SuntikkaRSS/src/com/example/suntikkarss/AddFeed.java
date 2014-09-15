@@ -71,7 +71,7 @@ public class AddFeed extends BaseActivity {
 	            Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
 	            cursor.moveToFirst();
 	            String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
-	            Toast.makeText(getBaseContext(), imagePath, Toast.LENGTH_LONG).show();
+	            //Toast.makeText(getBaseContext(), imagePath, Toast.LENGTH_LONG).show();
 	            // Now we need to set the GUI ImageView data with data read from the picked file.
 	            thumbnail.setImageBitmap(BitmapFactory.decodeFile(imagePath));
 	            thumbpath = imagePath;

@@ -1,5 +1,6 @@
 package com.example.suntikkarss;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 public class SQL extends SQLiteOpenHelper {
 	
+	private Context mC;
 	private static final String DATABASE_NAME = "suntikkadb";
 	private static final String FEEDS = "RSSfeedit";
 	private static final String FOLLOW = "seuratut_feedit";
@@ -18,14 +20,13 @@ public class SQL extends SQLiteOpenHelper {
 	
 	private static final String MKFEEDS = "CREATE TABLE IF NOT EXISTS "
 			+ FEEDS + "( id INTEGER PRIMARY KEY, "
-			+ "nimi TEXT, "
 			+ "url TEXT, "
 			+ "path TEXT )";
 	
 	public SQL(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         //Toast.makeText(context, "sql", Toast.LENGTH_LONG).show();
-        
+        mC=context;
         
 	}
 
@@ -33,7 +34,7 @@ public class SQL extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		//db.execSQL("DROP TABLE IF EXISTS " + MKFEEDS );
+		db.execSQL("DROP TABLE IF EXISTS " + FEEDS );
 		db.execSQL(MKFEEDS);
 		//Toast.makeText(, "sql", Toast.LENGTH_LONG).show();
 		
@@ -53,7 +54,7 @@ public class SQL extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 		//Random r = new Random();
 		
-		db.execSQL("INSERT INTO "+FEEDS+" ( nimi, url, path ) VALUES( '"+nimi+"', '"+url+"', '"+path+"' )");
+		db.execSQL("INSERT INTO "+FEEDS+" ( url, path ) VALUES( '"+url+"', '"+path+"' )");
 		String ret = "";
 		String count = "SELECT * FROM "+FEEDS;
 		
@@ -63,11 +64,11 @@ public class SQL extends SQLiteOpenHelper {
 		if (c .moveToFirst()) {
 
             while (c.isAfterLast() == false) {
-                String name = c.getString(1);
-                String urli = c.getString(2);
-                String pathi = c.getString(3);
+               
+                String urli = c.getString(1);
+                String pathi = c.getString(2);
 
-                ret += name + ","+urli+","+pathi+" | ";
+                ret += urli+","+pathi+" | ";
                 c.moveToNext();
             }
         }
@@ -82,6 +83,33 @@ public class SQL extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.execSQL("DROP TABLE IF EXISTS " + FEEDS );
 		onCreate(db);
+	}
+
+
+	public ArrayList<String> listFeeds() {
+		
+		ArrayList<String> ret = new ArrayList<String>();
+		
+		SQLiteDatabase db = this.getWritableDatabase();
+		String count = "SELECT * FROM "+FEEDS;
+		
+		Cursor c = db.rawQuery(count, null);
+		
+		
+		if (c .moveToFirst()) {
+
+            while (c.isAfterLast() == false) {
+                
+                String pathi = c.getString(2);
+                
+                ret.add(pathi);
+                
+               
+                c.moveToNext();
+            }
+        }
+		
+		return ret;
 	}
 	
 }
