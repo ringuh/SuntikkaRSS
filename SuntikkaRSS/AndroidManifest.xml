@@ -3,7 +3,9 @@
     package="com.example.suntikkarss"
     android:versionCode="1"
     android:versionName="1.0" >
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.INTERNET" />
     <uses-sdk
         android:minSdkVersion="18"
         android:targetSdkVersion="21" />
@@ -30,7 +32,10 @@
             android:name=".ImageActivity"
             android:label="@string/title_activity_image" >
         </activity>
-        
+        <activity
+            android:name=".RssReader"
+            android:label="@string/title_activity_rss_reader" >
+        </activity>
     </application>
 
 </manifest>

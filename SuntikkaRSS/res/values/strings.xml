@@ -12,5 +12,6 @@
     <string name="title_activity_image">ImageActivity</string>
     <string name="pick_image">Valitse ikoni</string>
     <string name="save_feed">Tallenna</string>
+    <string name="title_activity_rss_reader">RssReader</string>
 
 </resources>

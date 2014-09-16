@@ -18,6 +18,7 @@ public class SQL extends SQLiteOpenHelper {
 	private static final String FOLLOW = "seuratut_feedit";
 	private static final int DATABASE_VERSION = 1;
 	
+	
 	private static final String MKFEEDS = "CREATE TABLE IF NOT EXISTS "
 			+ FEEDS + "( id INTEGER PRIMARY KEY, "
 			+ "url TEXT, "
@@ -36,6 +37,8 @@ public class SQL extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS " + FEEDS );
 		db.execSQL(MKFEEDS);
+		db.execSQL("insert into "+FEEDS+" (path, url) VALUES('/storage/emulated/0/eBooks/abercombie/Blade Itself, The - Abercrombie, Joe.jpg', 'www.radiorock.fi/rss/podcasts/1' )");
+		db.execSQL("insert into "+FEEDS+" (path, url) VALUES('/storage/emulated/0/comics/Deadpool Alternate Universes/X-Calibre (3085)/cover.jpg', 'www.radiosuomipop.fi/rss/podcasts/1' )");
 		//Toast.makeText(, "sql", Toast.LENGTH_LONG).show();
 		
 	}
@@ -73,7 +76,8 @@ public class SQL extends SQLiteOpenHelper {
             }
         }
 		
-		
+		c.close();
+		db.close();
 		
 		return ret;
 	}
@@ -99,10 +103,34 @@ public class SQL extends SQLiteOpenHelper {
 		if (c .moveToFirst()) {
 
             while (c.isAfterLast() == false) {
-                
                 String pathi = c.getString(2);
                 
-                ret.add(pathi);
+                ret.add(pathi);                
+               
+                c.moveToNext();
+            }
+        }
+		c.close();
+		db.close();
+		
+		return ret;
+	}
+	
+	public ArrayList<String> listUrls() {
+		
+		ArrayList<String> ret = new ArrayList<String>();
+		
+		SQLiteDatabase db = this.getWritableDatabase();
+		String count = "SELECT * FROM "+FEEDS;
+		
+		Cursor c = db.rawQuery(count, null);
+		
+		if (c .moveToFirst()) {
+
+            while (c.isAfterLast() == false) {
+                ret.add(c.getString(1));      
+                
+               
                 
                
                 c.moveToNext();
@@ -112,4 +140,13 @@ public class SQL extends SQLiteOpenHelper {
 		return ret;
 	}
 	
+	public void deleteFeed(int index)
+	{
+		ArrayList<String> feedit = listFeeds();
+		SQLiteDatabase db = this.getWritableDatabase();
+		String count = "DELETE FROM "+FEEDS + " WHERE path='"+feedit.get(index)+"'";
+		db.execSQL(count);
+	
+	}
 }
+
