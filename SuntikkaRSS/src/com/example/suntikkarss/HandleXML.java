@@ -40,6 +40,7 @@ public class HandleXML {
 	            case XmlPullParser.END_TAG:
 		           if(name.equals("itunes:summary"))
 	               {
+		        	   
 	            	   summaries.add(text);           	   
 	               }
 	               else{

@@ -3,6 +3,7 @@ package com.example.suntikkarss;
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.R.bool;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,7 +16,7 @@ public class SQL extends SQLiteOpenHelper {
 	private Context mC;
 	private static final String DATABASE_NAME = "suntikkadb";
 	private static final String FEEDS = "RSSfeedit";
-	private static final String FOLLOW = "seuratut_feedit";
+	private static final String FOLLOW = "RSSteksti";
 	private static final int DATABASE_VERSION = 1;
 	
 	
@@ -23,6 +24,11 @@ public class SQL extends SQLiteOpenHelper {
 			+ FEEDS + "( id INTEGER PRIMARY KEY, "
 			+ "url TEXT, "
 			+ "path TEXT )";
+	
+	private static final String MKRSS = "CREATE TABLE IF NOT EXISTS "
+			+ FOLLOW + "( id INTEGER PRIMARY KEY, "
+			+ "url TEXT, "
+			+ "content TEXT )";
 	
 	public SQL(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,10 +42,12 @@ public class SQL extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS " + FEEDS );
+		db.execSQL("DROP TABLE IF EXISTS " + FOLLOW );
 		db.execSQL(MKFEEDS);
+		db.execSQL(MKRSS);
 		db.execSQL("insert into "+FEEDS+" (path, url) VALUES('/storage/emulated/0/eBooks/abercombie/Blade Itself, The - Abercrombie, Joe.jpg', 'www.radiorock.fi/rss/podcasts/1' )");
 		db.execSQL("insert into "+FEEDS+" (path, url) VALUES('/storage/emulated/0/comics/Deadpool Alternate Universes/X-Calibre (3085)/cover.jpg', 'www.radiosuomipop.fi/rss/podcasts/1' )");
-		//Toast.makeText(, "sql", Toast.LENGTH_LONG).show();
+		
 		
 	}
 
@@ -48,7 +56,7 @@ public class SQL extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS " + MKFEEDS );
-		
+		db.execSQL("DROP TABLE IF EXISTS " + FOLLOW );
 		onCreate(db);
 	}
 	
@@ -146,6 +154,33 @@ public class SQL extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 		String count = "DELETE FROM "+FEEDS + " WHERE path='"+feedit.get(index)+"'";
 		db.execSQL(count);
+		db.close();
+	}
+	
+	public void deleteRSS(String syote)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		String count = "DELETE FROM "+FOLLOW + " WHERE content='"+syote+"'";
+		db.execSQL(count);
+		db.close();
+		
+	}
+	
+	public boolean addRSS(String url, String syote)
+	{
+		boolean exists = false;
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor c = db.rawQuery("SELECT * FROM "+FOLLOW+" WHERE url='"+url+"', content='"+syote+"'", null);
+		if( c.moveToFirst())
+			exists = true;
+		else
+		{
+			String count = "INSERT INTO "+FOLLOW + " ( url, content ) VALUES ( '"+url+"', '"+syote+"')";
+			db.execSQL(count);
+		}
+		db.close();
+		
+		return exists;
 	
 	}
 }
