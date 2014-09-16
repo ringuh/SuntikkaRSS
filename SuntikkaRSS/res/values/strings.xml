@@ -3,7 +3,7 @@
 
     <string name="app_name">SuntikkaRSS</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Lisää RSS feedi</string>
     <string name="background_title">bgtitle</string>
     <string name="toast_title">toasttitle</string>
     <string name="title_activity_add_feed">AddFeed</string>

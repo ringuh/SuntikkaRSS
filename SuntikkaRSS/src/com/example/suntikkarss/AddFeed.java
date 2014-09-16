@@ -43,9 +43,9 @@ public class AddFeed extends BaseActivity {
 		
 		SQL mysli = new SQL(getApplicationContext());
 		//mysli.ClearDB();
-		EditText nimi = (EditText)findViewById(R.id.editFeedName);
+		
 		EditText url = (EditText)findViewById(R.id.editFeedUrl);
-		String ret = mysli.InsertFeed(nimi.getText().toString(), url.getText().toString(), thumbpath);
+		String ret = mysli.InsertFeed(null, url.getText().toString(), thumbpath);
 		Toast.makeText(getBaseContext(), ret, Toast.LENGTH_LONG).show();
 		
 		
@@ -74,6 +74,7 @@ public class AddFeed extends BaseActivity {
 	            //Toast.makeText(getBaseContext(), imagePath, Toast.LENGTH_LONG).show();
 	            // Now we need to set the GUI ImageView data with data read from the picked file.
 	            thumbnail.setImageBitmap(BitmapFactory.decodeFile(imagePath));
+	           
 	            thumbpath = imagePath;
 	            // At the end remember to close the cursor or you will end with the RuntimeException!
 	            cursor.close();

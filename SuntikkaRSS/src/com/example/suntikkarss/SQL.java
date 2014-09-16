@@ -160,28 +160,48 @@ public class SQL extends SQLiteOpenHelper {
 	public void deleteRSS(String syote)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
-		String count = "DELETE FROM "+FOLLOW + " WHERE content='"+syote+"'";
-		db.execSQL(count);
+		String sql = "DELETE FROM "+FOLLOW + " WHERE content='"+syote+"'";
+		db.execSQL(sql);
 		db.close();
 		
 	}
 	
 	public boolean addRSS(String url, String syote)
 	{
+		
 		boolean exists = false;
+		
 		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor c = db.rawQuery("SELECT * FROM "+FOLLOW+" WHERE url='"+url+"', content='"+syote+"'", null);
+		Cursor c = db.rawQuery("SELECT * FROM "+FOLLOW+" WHERE url='"+url+"' AND content='"+syote+"'", null);
 		if( c.moveToFirst())
 			exists = true;
+		
 		else
 		{
 			String count = "INSERT INTO "+FOLLOW + " ( url, content ) VALUES ( '"+url+"', '"+syote+"')";
 			db.execSQL(count);
 		}
-		db.close();
 		
+		db.close();
 		return exists;
 	
+	}
+	
+	public ArrayList<String> getRSS(String url)
+	{
+		ArrayList<String> ret = new ArrayList<String>();
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor c = db.rawQuery("SELECT * FROM "+FOLLOW+" WHERE url='"+url+"'", null);
+		if (c .moveToFirst()) {
+            while (c.isAfterLast() == false) {
+                ret.add(c.getString(2));                
+               
+                c.moveToNext();
+            }
+        }
+		c.close();
+		db.close();
+		return ret;
 	}
 }
 

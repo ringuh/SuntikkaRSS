@@ -18,17 +18,13 @@ public class BaseActivity extends Activity {
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
 		  switch (item.getItemId()) {
-		    case R.id.background:
-		      Toast.makeText(getApplicationContext(), "bgbutton", Toast.LENGTH_LONG).show();
-		      return true;
-		    case R.id.toast:
-		      Toast.makeText(getBaseContext(), R.string.toast_title, 
-		                     Toast.LENGTH_LONG).show();
-		      return true;
+		    
+		    
 		      
 		    case R.id.action_settings:
 		    	Intent intent = new Intent(this, AddFeed.class);
 		    	startActivity(intent);
+		    	return true;
 		    default:
 		      return super.onOptionsItemSelected(item);
 		  }

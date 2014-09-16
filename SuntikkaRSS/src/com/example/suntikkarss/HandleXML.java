@@ -8,15 +8,22 @@ import java.util.ArrayList;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import android.content.Context;
+
 public class HandleXML {
 
 	   private ArrayList<String> summaries = new ArrayList<String>();
-	   
+	   private Context mContext;
 	   private String urlString = null;
 	   private XmlPullParserFactory xmlFactoryObject;
 	   public volatile boolean parsingComplete = true;
-	   public HandleXML(String url){
+	   public HandleXML(String url, Context mC){
 	      this.urlString = url;
+	      mContext = mC;
+	      SQL mysli = new SQL(mC);
+	      //summaries = mysli.getRSS(url); 
+	      /* ei käytetä, koska ohjelma ei kuitenkaan toimi ilman nettiyhteyttä, 
+	       * ja tämä kusee syötteiden järjestysken */
 	   }
 	   public ArrayList<String> getItems()
 	   {
@@ -40,8 +47,17 @@ public class HandleXML {
 	            case XmlPullParser.END_TAG:
 		           if(name.equals("itunes:summary"))
 	               {
-		        	   
-	            	   summaries.add(text);           	   
+		        	   boolean haettuKannasta = summaries.contains(text);
+		        	   if(!haettuKannasta)
+		        	   {
+		        		   //summaries.add("NEW! "+text);
+			        	   SQL mysli = new SQL(mContext);
+			        	   boolean in = mysli.addRSS(this.urlString, text);
+			        	   if( !in )
+			        		   summaries.add("NEW! "+text);
+			        	   else
+			        		   summaries.add(text);
+		        	   }
 	               }
 	               else{
 	            	   
@@ -76,6 +92,7 @@ public class HandleXML {
 	         parseXMLAndStoreIt(myparser);
 	         stream.close();
 	      } catch (Exception e) {
+	    	  //parsingComplete = true;
 	      }
 	      }
 	      });
