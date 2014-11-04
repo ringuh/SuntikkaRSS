@@ -11,9 +11,19 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+/**
+ * @author 
+ *
+ * Kuvien käsittelyyn liittyvä adapteri luokka.
+ */
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
 
+    /**
+     * @param c Määrittää kontekstin jossa työskennellään.
+     * 
+     * Tallentaan parametrina saadun kontekstin käyttöön ja hakee kuvat toisen funktion avulla.
+     */
     public ImageAdapter(Context c) {
     	
         mContext = c;
@@ -60,6 +70,9 @@ public class ImageAdapter extends BaseAdapter {
     
     private ArrayList<String> kuvalista = new ArrayList<String>();
     
+    /**
+     * Funktio joka suorittaa kuvien tietojen hakemisen SQL kannasta.
+     */
     private void haeKuvat()
     {
     	SQL mysli = new SQL(mContext);

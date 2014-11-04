@@ -11,6 +11,11 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+/**
+ * @author Veli-V
+ *
+ * Luokka joka vastaa SQL kannan ja ohjelman välisestä toiminnasta.
+ */
 public class SQL extends SQLiteOpenHelper {
 	
 	private Context mC;
@@ -60,6 +65,14 @@ public class SQL extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 	
+	/**
+	 * @param nimi Syötteelle annettu nimi
+	 * @param url Syötteen url osoite
+	 * @param path Syötteen polku
+	 * @return Palauttaa tiedon onnistuiko lisäys ja jos onnistui lisätyt tiedot
+	 * 
+	 * Funktio joka lisää annetun syötteen tiedot kantaan.
+	 */
 	public String InsertFeed(String nimi, String url, String path)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -90,6 +103,9 @@ public class SQL extends SQLiteOpenHelper {
 		return ret;
 	}
 
+	/**
+	 * Funktio joka tyhjentää kannan tarvittaessa. 
+	 */
 	public void ClearDB()
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -98,6 +114,11 @@ public class SQL extends SQLiteOpenHelper {
 	}
 
 
+	/**
+	 * @return Palauttaa listan feedeistä.
+	 * 
+	 * Funktio joka palauttaa tallennetut feedit listana.
+	 */
 	public ArrayList<String> listFeeds() {
 		
 		ArrayList<String> ret = new ArrayList<String>();
@@ -124,6 +145,11 @@ public class SQL extends SQLiteOpenHelper {
 		return ret;
 	}
 	
+	/**
+	 * @return Lista urleista
+	 * 
+	 * Funktio joka palauttaa tallennetut urlit.
+	 */
 	public ArrayList<String> listUrls() {
 		
 		ArrayList<String> ret = new ArrayList<String>();
@@ -148,6 +174,11 @@ public class SQL extends SQLiteOpenHelper {
 		return ret;
 	}
 	
+	/**
+	 * @param index Syötteen sijainti joka poistetaan
+	 * 
+	 * Funktio joka poistaa syötteen annetussa indeksissä.
+	 */
 	public void deleteFeed(int index)
 	{
 		ArrayList<String> feedit = listFeeds();
@@ -157,6 +188,11 @@ public class SQL extends SQLiteOpenHelper {
 		db.close();
 	}
 	
+	/**
+	 * @param syote Poistettavan syötteen nimi.
+	 * 
+	 * Funktio joka poistaa annetun nimisen syötteen kannasta.
+	 */
 	public void deleteRSS(String syote)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -166,6 +202,13 @@ public class SQL extends SQLiteOpenHelper {
 		
 	}
 	
+	/**
+	 * @param url Syötteen url.
+	 * @param syote Syötteen nimi.
+	 * @return Boolean arvo onnistuiko lisäys.
+	 * 
+	 * Lisää syötteen annetuilla tiedoilla kantaan.
+	 */
 	public boolean addRSS(String url, String syote)
 	{
 		
@@ -187,6 +230,12 @@ public class SQL extends SQLiteOpenHelper {
 	
 	}
 	
+	/**
+	 * @param url Syötteen url.
+	 * @return Lista vastaavista feedeistä.
+	 * 
+	 * Palauttaa urlia vastaavat syötteet.
+	 */
 	public ArrayList<String> getRSS(String url)
 	{
 		ArrayList<String> ret = new ArrayList<String>();

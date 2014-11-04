@@ -7,6 +7,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+/**
+ * @author
+ * 
+ * Yleistoiminnallisuudesta vastaava luokka. L‰hinn‰ olemassa pohjana jonka p‰‰lle rakennetaan.
+ *
+ */
 public class BaseActivity extends Activity {
 
 	@Override

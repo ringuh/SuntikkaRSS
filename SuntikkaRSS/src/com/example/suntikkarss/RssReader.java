@@ -11,6 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
 
+/**
+ * @author Veli-V
+ *
+ * RssReader luokka joka toimii perustana ohjelman toiminnalle.
+ */
 public class RssReader extends BaseActivity {
 	private Bundle bundle;
 	
@@ -29,6 +34,11 @@ public class RssReader extends BaseActivity {
         
 	}
 	
+	/**
+	 * @param urli Kertoo url osoitteen josta tiedot haetaan.
+	 * 
+	 * Noutaa feedin tiedot url osoitteesta.
+	 */
 	private void fetch(String urli){
 	      HandleXML obj = new HandleXML(urli, this);
 	      String teksti = "null";

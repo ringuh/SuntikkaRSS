@@ -10,6 +10,11 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.content.Context;
 
+/**
+ * @author 
+ *
+ * Luokka joka hoitaa XML käsittelyn
+ */
 public class HandleXML {
 
 	   private ArrayList<String> summaries = new ArrayList<String>();
@@ -25,12 +30,23 @@ public class HandleXML {
 	      /* ei käytetä, koska ohjelma ei kuitenkaan toimi ilman nettiyhteyttä, 
 	       * ja tämä kusee syötteiden järjestysken */
 	   }
-	   public ArrayList<String> getItems()
+	 /**
+	 * @return ArrayList<String> syöte itemit sisältävä lista.
+	 * 
+	 * Palauttaa syötteiden tiedot listana.
+	 */
+	public ArrayList<String> getItems()
 	   {
 		   return summaries;
 	   }
 	   
-	   public void parseXMLAndStoreIt(XmlPullParser myParser) {
+	   /**
+	 * @param myParser Kertoo mitä parseria tämä funktio tässä instansissa käyttää.
+	 * 
+	 * Funktion tarkoitus on parsia XML:stä irti tarpeellinen tieto ja tallentaa
+	 * se helpommin käsiteltävään muotoon.
+	 */
+	public void parseXMLAndStoreIt(XmlPullParser myParser) {
 	      int event;
 	      String text=null;
 	      try {
@@ -73,7 +89,8 @@ public class HandleXML {
 	   }
 	   public void fetchXML(){
 	   Thread thread = new Thread(new Runnable(){
-	   @Override
+		   
+	@Override
 	   public void run() {
 	      try {
 	         URL url = new URL(urlString);

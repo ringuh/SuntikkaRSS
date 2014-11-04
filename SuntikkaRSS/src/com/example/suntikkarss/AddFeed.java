@@ -11,6 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+/**
+ * @author 
+ *
+ * Feedin lis‰‰misen ja tallentamisen hoitava luokka. 
+ */
 public class AddFeed extends BaseActivity {
 
 	private static final int LOAD_IMAGE_RESULTS = 1;
@@ -25,6 +30,10 @@ public class AddFeed extends BaseActivity {
 	}
 
 	
+	/**
+	 * M‰‰ritt‰‰ viewille mik‰ kuva n‰ytet‰‰n.
+	 * @param view Mihin viewiin imagen valinta liittyy.
+	 */
 	public void chooseImage(View view)
 	{
 		Toast.makeText(getBaseContext(), "text", Toast.LENGTH_LONG).show();
@@ -37,6 +46,10 @@ public class AddFeed extends BaseActivity {
 
 	}
 	
+	/**
+	 * Funktio joka suorittaa feedin tallentamisen kantaan.
+	 * @param view Mihin viewiin tallennus liitty.
+	 */
 	public void saveFeed(View view)
 	{
 		//Toast.makeText(getBaseContext(), "nyt pit‰isi tallentaa kantaan tiedot", Toast.LENGTH_LONG).show();
@@ -56,7 +69,7 @@ public class AddFeed extends BaseActivity {
 		
 	}
 	
-	 @Override
+	@Override
 	    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	        super.onActivityResult(requestCode, resultCode, data);
 	         

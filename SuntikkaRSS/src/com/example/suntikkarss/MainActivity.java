@@ -12,6 +12,11 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 
+/**
+ * @author Veli-V
+ * BaseActivityn p‰‰lle rakennettu main luokka joka alustaa toiminnan ja toimii
+ * sen kautta agrekaattina muulle toiminnalle.
+ */
 public class MainActivity extends BaseActivity {
 
     @Override
