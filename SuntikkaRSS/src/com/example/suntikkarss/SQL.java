@@ -12,9 +12,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 /**
- * @author Veli-V
  *
  * Luokka joka vastaa SQL kannan ja ohjelman välisestä toiminnasta.
+ * @author Veli-V
  */
 public class SQL extends SQLiteOpenHelper {
 	
@@ -50,8 +50,8 @@ public class SQL extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + FOLLOW );
 		db.execSQL(MKFEEDS);
 		db.execSQL(MKRSS);
-		db.execSQL("insert into "+FEEDS+" (path, url) VALUES('/storage/emulated/0/eBooks/abercombie/Blade Itself, The - Abercrombie, Joe.jpg', 'www.radiorock.fi/rss/podcasts/1' )");
-		db.execSQL("insert into "+FEEDS+" (path, url) VALUES('/storage/emulated/0/comics/Deadpool Alternate Universes/X-Calibre (3085)/cover.jpg', 'www.radiosuomipop.fi/rss/podcasts/1' )");
+		//db.execSQL("insert into "+FEEDS+" (path, url) VALUES('/storage/emulated/0/eBooks/abercombie/Blade Itself, The - Abercrombie, Joe.jpg', 'www.radiorock.fi/rss/podcasts/1' )");
+		//db.execSQL("insert into "+FEEDS+" (path, url) VALUES('/storage/emulated/0/comics/Deadpool Alternate Universes/X-Calibre (3085)/cover.jpg', 'www.radiosuomipop.fi/rss/podcasts/1' )");
 		
 		
 	}

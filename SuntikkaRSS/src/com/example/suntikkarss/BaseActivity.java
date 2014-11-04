@@ -8,10 +8,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 /**
- * @author
  * 
  * Yleistoiminnallisuudesta vastaava luokka. L‰hinn‰ olemassa pohjana jonka p‰‰lle rakennetaan.
- *
+ * Tarjoaa yhten‰iset menut
+ * @author Veli-V
  */
 public class BaseActivity extends Activity {
 

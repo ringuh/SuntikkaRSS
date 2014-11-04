@@ -6,10 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 /**
- * @author
  * Luokka joka hoitaa Imageihin liittyvän toiminnallisuuden.
- * On jatke perus aktiviteetille.
- *
+ * Käytössä etusivun kuvagridissä.
+ * @author Veli-V
  */
 public class ImageActivity extends BaseActivity {
 

@@ -11,9 +11,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.content.Context;
 
 /**
- * @author 
  *
  * Luokka joka hoitaa XML k‰sittelyn
+ * @author Veli-V
  */
 public class HandleXML {
 
@@ -44,7 +44,8 @@ public class HandleXML {
 	 * @param myParser Kertoo mit‰ parseria t‰m‰ funktio t‰ss‰ instansissa k‰ytt‰‰.
 	 * 
 	 * Funktion tarkoitus on parsia XML:st‰ irti tarpeellinen tieto ja tallentaa
-	 * se helpommin k‰sitelt‰v‰‰n muotoon.
+	 * se helpommin k‰sitelt‰v‰‰n muotoon. T‰lle ohjelmalle tarpeellinen tieto on tagin <itunes:summary> sis‰ltˆ,
+	 * joka palauttaa nelonen median podcastien esitiedot
 	 */
 	public void parseXMLAndStoreIt(XmlPullParser myParser) {
 	      int event;

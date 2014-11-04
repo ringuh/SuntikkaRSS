@@ -6,14 +6,22 @@
     android:orientation="vertical" >
 
    
-    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="15"
+       	android:text="Ottaa vastaan nelosen median urleja. esim. 'www.radiosuomipop.fi/rss/podcasts/1'"
+        
+        />
+   
     <EditText
         android:id="@+id/editFeedUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="15"
         android:hint="@string/editfeedurl"
-         android:inputType="textUri">
+        android:text="www.radiorock.fi/rss/podcasts/1"
+        android:inputType="textUri">
 
         <requestFocus />
     </EditText>

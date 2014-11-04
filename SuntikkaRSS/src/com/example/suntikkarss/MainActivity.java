@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 
 /**
- * @author Veli-V
  * BaseActivityn p‰‰lle rakennettu main luokka joka alustaa toiminnan ja toimii
  * sen kautta agrekaattina muulle toiminnalle.
+ * @author Veli-V
  */
 public class MainActivity extends BaseActivity {
 

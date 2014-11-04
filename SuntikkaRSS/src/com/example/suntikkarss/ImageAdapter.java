@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
- * @author 
  *
  * Kuvien käsittelyyn liittyvä adapteri luokka.
+ * @author Veli-V
  */
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;

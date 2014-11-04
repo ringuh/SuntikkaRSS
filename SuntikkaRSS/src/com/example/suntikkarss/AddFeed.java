@@ -12,9 +12,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
- * @author 
+ * 
  *
  * Feedin lis‰‰misen ja tallentamisen hoitava luokka. 
+ * @author Veli-V
  */
 public class AddFeed extends BaseActivity {
 

@@ -12,9 +12,9 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
 
 /**
- * @author Veli-V
  *
  * RssReader luokka joka toimii perustana ohjelman toiminnalle.
+ * @author Veli-V
  */
 public class RssReader extends BaseActivity {
 	private Bundle bundle;
